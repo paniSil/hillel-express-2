@@ -12,7 +12,7 @@ const validateUserBody = celebrate({
 
 const validateParamsUserId = celebrate({
     [Segments.PARAMS]: Joi.object({
-        userId: Joi.number().integer().positive().required()
+        id: Joi.number().integer().positive().required()
     })
 })
 
