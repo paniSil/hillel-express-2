@@ -11,7 +11,7 @@ const validateArticleBody = celebrate({
 
 const validateParamsArticleId = celebrate({
     [Segments.PARAMS]: Joi.object({
-        articleId: Joi.number().integer().positive().required()
+        id: Joi.number().integer().positive().required()
     })
 })
 
