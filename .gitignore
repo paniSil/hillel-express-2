@@ -14,4 +14,5 @@ src/__test__/
 *.log
 *.js.map
 *.d.ts
+src/ASSIGNMENT.md
 
