@@ -12,23 +12,23 @@
 
 ## 2. Використані Middleware
 
-### 2.1. logRequests (src/middleware/logging.mjs)
+### 2.1. logRequests (src/middleware/logRequests.mjs)
 
 Записує інформацію про кожен вхідний HTTP-запит (час, метод, URL) у консоль сервера. Допомагає у моніторингу та дебагінгу. Використовується глобально до всіх запитів (app.use(logRequests))
 
-### 2.2. basicAuth (src/middleware/auth.mjs)
+### 2.2. authHandler (src/middleware/auth.mjs)
 
 Виконує базову аутентифікацію, перевіряючи наявність та значення токена авторизації в заголовку Authorization: Bearer <token>. Якщо токен відсутній або невірний, повертає 401 Unauthorized. Використовується до маршрутів, пов'язаних з користувачами (/users, /users/:userId).
 
-### 2.3 checkArticleAccess (src/middleware/auth.mjs)
+### 2.3 checkAccess (src/middleware/auth.mjs)
 
 Виконує авторизацію, перевіряючи права доступу користувача на основі його ролі. Якщо роль відсутня або не дозволена, повертає 403 Forbidden. Використовується до маршрутів, пов'язаних зі статтями (/articles, /articles/:articleId).
 
-### 2.4 Валідатори (validateUserBody, validateParamsUserId, validateArticleBody, validateParamsArticleId) (src/middleware/validation.mjs)
+### 2.4 Валідатори (validateUserBody, validateParamsUserId, validateArticleBody, validateParamsArticleId) (src/middleware/articleValidation.mjs, src/middleware/userValidation.mjs,)
 
 Виконують валідацію вхідних даних (тіла запиту або параметрів URL) за допомогою бібліотек Joi (для визначення схеми валідації) та celebrate. Якщо дані не проходять валідацію, повертає 400 Bad Request з текстовим описом помилки.
 
-### 2.5 Обробники помилок (notFoundHandler, errorHandler) (src/middleware/errorHandling.mjs)
+### 2.5 Обробники помилок (notFoundHandler, errorHandler) (src/middleware/errorHandler.mjs)
 
 - notFoundHandler: Обробляє запити до неіснуючих маршрутів, повертаючи 404 Not Found.
 - errorHandler: Глобальний обробник помилок, який перехоплює всі необроблені помилки в додатку. Він спеціально обробляє помилки celebrate, повертаючи 400 Bad Request з повідомленням про валідацію. Для інших помилок повертає 500 Internal Server Error.
