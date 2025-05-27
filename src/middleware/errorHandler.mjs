@@ -3,7 +3,7 @@ import { isCelebrateError } from 'celebrate';
 //for tests
 export const notFoundHandler = (req, res, next) => {
     res.status(404).send('Not Found')
-    next(error)
+    next()
 }
 
 // export const notFoundHandler = (req, res, next) => {
