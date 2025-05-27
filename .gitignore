@@ -6,6 +6,8 @@ node_modules/
 dist/
 build/
 coverage/
+requests/
+src/__test__/
 
 # Files
 .DS_Store

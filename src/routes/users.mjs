@@ -7,17 +7,21 @@ import {
     putUserByIdHandler
 } from '../controllers/users.mjs'
 
+import { authHandler } from '../middleware/authHandler.mjs'
+import { validateUserBody, validateParamsUserId } from '../validators/userValidation.mjs'
+
+
 const usersRouter = Router()
 
 usersRouter
     .route('/')
-    .get(getUsersHandler)
-    .post(postUsersHandler)
+    .get(authHandler, getUsersHandler)
+    .post(authHandler, validateUserBody, postUsersHandler)
 
 usersRouter
     .route('/:id')
-    .get(getUserByIdHandler)
-    .put(putUserByIdHandler)
-    .delete(deleteUserByIdHandler)
+    .get(authHandler, validateParamsUserId, getUserByIdHandler)
+    .put(authHandler, validateParamsUserId, validateUserBody, putUserByIdHandler)
+    .delete(authHandler, validateParamsUserId, deleteUserByIdHandler)
 
 export default usersRouter
